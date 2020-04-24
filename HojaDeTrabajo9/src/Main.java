@@ -2,7 +2,7 @@
  * Universidad del Valle de Guatemala
  * Algortimos y estructura de datos
  * Seccion 20 
- * @author Laura Tamath
+ * @author Laura Tamath 19365
  * @author Juan Marroquin
  * @since  20/04/2020
  * @version 24/04/2020
