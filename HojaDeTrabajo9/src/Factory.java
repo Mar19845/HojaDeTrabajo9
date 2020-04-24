@@ -5,19 +5,21 @@ import java.util.Map;
  * @author Juan Marroquin
  * 
  */
-public class Factory {
+public class Factory<E> {
+    Arbol implement;
      public Factory() {
     }
-    public static Map<String, String[]> obtenerMap(String opcion){
-        switch (opcion){
-            case "1":
-                return new HashMap<>();
-            case "2":
-                //return new HashMap<>();
-                //poner el splay tree
-           
-            default:
-                return null;
+    public Arbol getTree(String entry) {
+    // seleccion de la implementacion a utilizar:
+        
+        if(entry.equals("HashMap"))
+        {
+         //   implement =  new HashMap<>();
+        }else if(entry.equals("Splay Tree"))
+        {
+            implement = new SplayTree<>();
         }
-    }
+        
+        return implement;      
+   }
 }

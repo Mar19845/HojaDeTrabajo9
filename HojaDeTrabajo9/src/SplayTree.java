@@ -3,7 +3,7 @@
  * @author Juan Marroquin
  * @since 24/04/2020
  */
-public class SplayTree <E> implements Tree{
+public class SplayTree <E> implements Arbol{
 
 	public Node root;
 	private final int count = 0;
@@ -21,7 +21,7 @@ public class SplayTree <E> implements Tree{
 	@Override
 	public String get(String key){
 		root = splay(root, key);
-		int comparar = ket.compareTo(root.getKey());
+		int comparar = key.compareTo(root.getKey());
 		if(comparar == 0 ){
 			return root.getValue().getValue().toString();
 		}
@@ -46,7 +46,7 @@ public class SplayTree <E> implements Tree{
 
 		//Insetar un nuevo nodo a la raiz 
 		if (comparar < 0){
-			Node n = Node(key, value);
+			Node n = new Node(key, value);
 			n.setLeft(root.getLeft());
 			n.setRight(root);
 			root.setLeft(null);
@@ -80,5 +80,87 @@ public class SplayTree <E> implements Tree{
 		}
 	}
 
+	private Node splay(Node h, String key) {
+        if (h == null) return null;
+
+        int cmp1 = key.compareTo(h.getKey());
+
+        if (cmp1 < 0) {
+            // La clave no esta en el arbol
+            if (h.getLeft() == null) {
+                return h;
+            }
+            int cmp2 = key.compareTo(h.getLeft().getKey());
+            if (cmp2 < 0) {
+                h.getLeft().setLeft(splay(h.getLeft().getLeft(), key));
+                h = rotateRight(h);
+            }
+            else if (cmp2 > 0) {
+                h.getLeft().setRight(splay(h.getLeft().getRight(), key));
+                if (h.getLeft().getRight() != null)
+                    h.setLeft(rotateLeft(h.getLeft()));
+            }
+            
+            if (h.getLeft() == null) return h;
+            else                return rotateRight(h);
+        }
+
+        else if (cmp1 > 0) { 
+            // La llave no esta en el arbol
+            if (h.getRight() == null) {
+                return h;
+            }
+
+            int cmp2 = key.compareTo(h.getRight().getKey());
+            if (cmp2 < 0) {
+                h.getRight().setLeft(splay(h.getRight().getLeft(), key));
+                if (h.getRight().getLeft() != null)
+                    h.setRight(rotateRight(h.getRight()));
+            }
+            else if (cmp2 > 0) {
+                h.getRight().setRight(splay(h.getRight().getRight(), key));
+                h = rotateLeft(h);
+            }
+            
+            if (h.getRight() == null) return h;
+            else                 return rotateLeft(h);
+        }
+
+        else return h;
+    }
+
+    public int height() { 
+    	return height(root);
+    }
+
+    private int height(Node x) {
+        if (x == null){
+        	return -1;
+        }
+        return 1 + Math.max(height(x.getLeft()), height(x.getRight()));
+    }
+
+    public int size() {
+        return size(root);
+    }
+
+    private int size(Node x) {
+        if (x == null) return 0;
+        else return 1 + size(x.getLeft()) + size(x.getRight());
+    }
+
+    private Node rotateRight(Node h) {
+        Node x = h.getLeft();
+        h.setLeft(x.getRight());
+        x.setRight(h);
+        return x;
+    }
+    
+    private Node rotateLeft(Node h) {
+        Node x = h.getRight();
+        h.setRight(x.getLeft());
+        x.setLeft(h);
+        return x;
+    }
 
 }

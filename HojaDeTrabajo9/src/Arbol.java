@@ -4,7 +4,7 @@
  * @since 24/04/2020
  */
 
-public interface Tree<E>{
+public interface Arbol<E>{
 
 	public boolean contains (String key);
 	/**
@@ -22,7 +22,7 @@ public interface Tree<E>{
 	**/
 
 
-	public void put(String key, String val)
+	public void put(String key, String val);
 	/**
 	post: inserta un nuevo node en el árbol
 	@param key 
