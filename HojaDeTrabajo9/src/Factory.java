@@ -1,8 +1,9 @@
 import java.util.HashMap;
 import java.util.Map;
 /**
- *
+ * @author Laura Tamath
  * @author Juan Marroquin
+ * 
  */
 public class Factory {
      public Factory() {
