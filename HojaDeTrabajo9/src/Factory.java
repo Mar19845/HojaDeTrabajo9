@@ -1,25 +1,30 @@
+
 import java.util.HashMap;
 import java.util.Map;
+
 /**
  * @author Laura Tamath
  * @author Juan Marroquin
- * 
+ *
  */
-public class Factory<E> {
+public class Factory<K extends Comparable<K>, V> {
+
     Arbol implement;
-     public Factory() {
+
+    public Factory() {
     }
-    public Arbol getTree(String entry) {
-    // seleccion de la implementacion a utilizar:
-        
-        if(entry.equals("HashMap"))
-        {
-         //   implement =  new HashMap<>();
-        }else if(entry.equals("Splay Tree"))
-        {
-            implement = new SplayTree<>();
+
+    public InterfaceHDT9 getFactory(String tipo) {
+        if ("1".equals(tipo)) {
+            //Es un hash map
+            return new Hash<K, V>();
         }
-        
-        return implement;      
-   }
+        if("2".equals(tipo)) {
+            //Es un splay tree
+            return new Hash<K, V>();
+        }
+        else{
+             return null;
+        }
+    }
 }

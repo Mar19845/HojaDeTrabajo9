@@ -13,19 +13,58 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.Scanner;
+import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 
 public class Main {
      public static void main(String [] args) throws FileNotFoundException, IOException {
-     	BufferedReader br = new BufferedReader(new FileReader("Spanish.txt"));    
-        StringBuilder sb = new StringBuilder();
-        String line;
-        Arbol imp = null; //implementacionq que escogera el Factory
-        Factory factory = new Factory();
-        SplayTree<Node<Association<String, String>>> rbt = new SplayTree<>(); //se crea nuevo arbol null
+        /**
+         * creacion de variables que serviran para manejar los archivos de textos e interactuar con el usuario
+         */
+        InterfaceHDT9<String,String> traduc = null;
+        Factory<String,String> factory = new Factory<>();
+        int contWhile = 1;
+        while(contWhile != 0){
+            //Solicitar al usuario la implementacion hasta que la seleccione correctamente
+            String implementacion = JOptionPane.showInputDialog(null, "Bienvenidos al Traductor\nImplementar HASHING ingrese 1 \nImplementar SPLAY TREE ingrese 2");
+            if(implementacion == "1"){
+                traduc = factory.getFactory(implementacion);
+                contWhile = 0;
+            }else if(implementacion == "2"){
+                traduc = factory.getFactory(implementacion);
+                contWhile = 0;
+            }else{
+                JOptionPane.showMessageDialog(null, "Ingrese una opcion valida");
+            }
+        }
+        /**
+         * Manejar visualizador de archivos
+         */
+        JFileChooser jfc = new JFileChooser();
+	jfc.setCurrentDirectory(new File(System.getProperty("user.dir")));
+        
+        /**
+         * solicirtar archivo con traducciones
+         */
+        JOptionPane.showMessageDialog(null, "Ingerse diccionario ");
+        jfc.showOpenDialog(null); 
+	File Diccionario = jfc.getSelectedFile();
 
-        Scanner teclado = new Scanner(System.in);
-        int ciclo =0;
-
+	/**
+         * Solicitar archivo para traducir
+         */
+	JOptionPane.showMessageDialog(null, "Ingerse un archivo para traduccir ");
+        jfc.showOpenDialog(null); 
+	File traducciones = jfc.getSelectedFile();
+        
+        /**
+         * llamar al traductor, que se encarga de leer y traducir los archivos
+         */
+        
+	Traductor translator = new Traductor(Diccionario,traducciones,traduc);
+	String oracion = translator.getOracion();
+	
+        /**
         try{
             while (ciclo ==0)
             {
@@ -112,5 +151,8 @@ public class Main {
         } finally{
             br.close();
         }
+        * **/
     }
+  
 }
+
