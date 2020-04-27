@@ -11,7 +11,7 @@ import java.util.Scanner;
  * @author Laura Tamath 19365 main creado por laura
  * donde funciona el splay tree, lee y traduce 
  * @author Juan Marroquin
- */
+
 public class Main2 {
   public static void main(String [] args) throws FileNotFoundException, IOException {
      	BufferedReader br = new BufferedReader(new FileReader("Spanish.txt"));    
@@ -112,3 +112,4 @@ public class Main2 {
         }
     }
 }
+ */

@@ -21,7 +21,8 @@ public class Factory<K extends Comparable<K>, V> {
         }
         if(tipo == "2") {
             //Es un splay tree
-            return new Hash<K, V>();
+            //return new Hash<>();
+            return new SplayTree();
         }
         else{
              return null;
