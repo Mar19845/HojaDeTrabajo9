@@ -7,8 +7,8 @@
 import java.util.Map;
 
 public class Association<K, V> implements Map.Entry<K,V>{
-	protected K theKey; // La clave del par key-value 
-	protected V theValue; // La clave del par key-value 
+	protected K theKey; 
+	protected V theValue; 
 
 	public Association(K key, V value){
         /**

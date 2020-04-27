@@ -15,16 +15,20 @@ public class Factory<K extends Comparable<K>, V> {
     }
 
     public InterfaceHDT9 getFactory(String tipo) {
-        if ("1".equals(tipo)) {
+        if (tipo == "1") {
             //Es un hash map
-            return new Hash<K, V>();
+            return new Hash<>();
         }
-        if("2".equals(tipo)) {
+        if(tipo == "2") {
             //Es un splay tree
             return new Hash<K, V>();
         }
         else{
              return null;
         }
+    }
+
+    Arbol getTree(String hashMap) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }
